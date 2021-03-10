@@ -91,7 +91,13 @@ const HomePage = (props) => {
             user: utente,
           };
           
-          await firebase.firestore().collection("bagno").doc(today.getTime().toString()).set(data).then(setOpen(true));
+          await firebase.firestore().collection("bagno").doc(today.getTime().toString()).set(data).then(() => {
+              setOpen(true);
+              firebase.firestore().collection("bagno").orderBy('data', 'desc').limit(50).get()
+                .then(collec => {
+                    setDate(collec.docs)
+                });
+          });
     }
   
     return(
