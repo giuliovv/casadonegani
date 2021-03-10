@@ -126,7 +126,7 @@ const HomePage = (props) => {
                             new Date()
                         }
                     />
-                    <Typography variant="overline" component="overline" display="block"  align="center" gutterBottom style={{width:"100vw", marginTop: "20px", marginBottom:"20px"}}>
+                    <Typography variant="overline" component="overline" display="block"  align="center" gutterBottom style={{width:"100vw", marginTop: "20px", marginBottom:"20px", overflowX: "hidden"}}>
                     Giorno di {turnoDi(value)}
                     </Typography>
                     <Button variant="contained" color="primary" onClick={() => firma()}>
