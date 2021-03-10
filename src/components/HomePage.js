@@ -5,6 +5,23 @@ import Typography from '@material-ui/core/Typography';
 import Calendar from 'react-calendar';
 import "../components/calendar.css"
 
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDZW57QvcounH23bpX2wTF2Hvkh75DF8j4",
+    authDomain: "casadoneganimilano.firebaseapp.com",
+    projectId: "casadoneganimilano",
+    storageBucket: "casadoneganimilano.appspot.com",
+    messagingSenderId: "17925739572",
+    appId: "1:17925739572:web:c7cfe66d400b05b1da6661"
+
+  };
+
+if (typeof window!== "undefined" && !firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
 const HomePage = (props) => {
     const [value, onChange] = React.useState(new Date());
 
