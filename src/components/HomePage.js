@@ -1,6 +1,11 @@
 import * as React from "react"
 
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
+
+import CloseIcon from '@material-ui/icons/Close';
 
 import Calendar from 'react-calendar';
 import "../components/calendar.css"
@@ -24,6 +29,8 @@ if (typeof window!== "undefined" && !firebase.apps.length) {
 
 const HomePage = (props) => {
     const [value, onChange] = React.useState(new Date());
+    const [date, setDate] = React.useState("");
+    const [open, setOpen] = React.useState(false);
 
     const startDate = new Date(2021, 3, 10);
 
@@ -40,8 +47,25 @@ const HomePage = (props) => {
             return "Giulio"
         }
     }
-  
 
+    if (date===""){
+        firebase.firestore().collection("bagno").orderBy('data', 'desc').limit(50).get()
+            .then(collec => {
+                setDate(collec.docs)
+            })
+    }
+
+    async function firma(){
+        let utente = props.user
+        const data = {
+            data: firebase.firestore.Timestamp.fromDate(today),
+            user: utente,
+          };
+          
+          // Add a new document in collection "cities" with ID 'LA'
+          await firebase.firestore().collection("bagno").doc(today.getTime().toString()).set(data).then(setOpen(true));
+    }
+  
     return(
         <div style={{display:"block"}}>
             <Typography variant="h1" component="h2" gutterBottom>
@@ -69,9 +93,33 @@ const HomePage = (props) => {
                     new Date()
                   }
             />
-            <Typography variant="body1" component="body1" gutterBottom>
+            <Typography variant="overline" component="overline" display="block"  align="center" gutterBottom style={{width:"100vw", marginTop: "20px", marginBottom:"20px"}}>
             Giorno di {turnoDi(value)}
             </Typography>
+            {
+                turnoDi(today) === props.user ?
+                <Button variant="contained" color="primary" onClick={() => firma()}>
+                    Fatto
+                </Button> :
+                null
+            }
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={open}
+                autoHideDuration={6000}
+                onClose={() => setOpen(false)}
+                message="Registrato"
+                action={
+                <React.Fragment>
+                    <IconButton size="small" aria-label="close" color="inherit" onClick={() => setOpen(false)}>
+                    <CloseIcon fontSize="small" />
+                    </IconButton>
+                </React.Fragment>
+                }
+            />
         </div>
     )
 }
