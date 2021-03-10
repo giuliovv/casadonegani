@@ -17,7 +17,9 @@ function LoginPage(props) {
     const classes = useStyles();
     function setLogin(user){
         props.setUser(user);
-        localStorage.setItem('username', user);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('username', user);
+        }
     }
 
     return (
