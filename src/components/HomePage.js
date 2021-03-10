@@ -103,8 +103,8 @@ const HomePage = (props) => {
     return(
         <div style={{display:"block"}}>
             <div style={{minHeight: "100vh", display: "table"}}>
-                <div style={{display: "table-cell",  verticalAlign: "middle"}}>
-                    <Typography variant="h1" component="h2" gutterBottom style={{marginTop:"20px", marginBottom: "20px"}}>
+                <div style={{display: "table-cell",  verticalAlign: "middle", overflowX: "hidden"}}>
+                    <Typography variant="h1" component="h2" gutterBottom style={{marginBottom: "40px", maxWidth: "80%", marginLeft: "10%", overflow: "hidden"}}>
                     {props.user !== "Laura" ? "Benvenuto" : "Benvenuta"} {props.user}
                     </Typography>
                     <Calendar
