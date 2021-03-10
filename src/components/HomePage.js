@@ -4,11 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import TextField from '@material-ui/core/TextField';
 
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -50,6 +52,7 @@ const HomePage = (props) => {
     const [date, setDate] = React.useState("");
     const [timestamps, setTimestamps] = React.useState([""]);
     const [open, setOpen] = React.useState(false);
+    const [tabs, setTab] = React.useState(0);
 
     const startDate = new Date(2021, 3, 10);
 
@@ -85,6 +88,22 @@ const HomePage = (props) => {
       );
 
     async function firma(){
+        let utente = props.user
+        const data = {
+            data: firebase.firestore.Timestamp.fromDate(today),
+            user: utente,
+          };
+          
+          await firebase.firestore().collection("bagno").doc(today.getTime().toString()).set(data).then(() => {
+              setOpen(true);
+              firebase.firestore().collection("bagno").orderBy('data', 'desc').limit(50).get()
+                .then(collec => {
+                    setDate(collec.docs)
+                });
+          });
+    }
+
+    async function registra(){
         let utente = props.user
         const data = {
             data: firebase.firestore.Timestamp.fromDate(today),
@@ -159,6 +178,27 @@ const HomePage = (props) => {
                 </ListItem>,
               )}
             </List>
+
+            <hr style={{borderTop: "1px dashed"}}/>
+            
+            <div id="spese">
+                <Typography variant="h4" component="h4" display="block"  align="center" gutterBottom style={{width:"100vw", overflowX: "hidden", marginTop: "40px"}}>
+                Spese
+                </Typography>
+
+                <form noValidate autoComplete="off">
+                    <TextField
+                    id="ammontare"
+                    label="Ammontare"
+                    InputProps={{
+                        startAdornment: <InputAdornment position="start">€</InputAdornment>,
+                    }}/>
+                    <TextField id="causale" label="Causale"/>
+                </form>
+                <Button variant="contained" color="primary" onClick={() => registra()}>
+                    Registra
+                </Button>
+            </div>
 
             <Snackbar
                 anchorOrigin={{
