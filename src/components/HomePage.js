@@ -3,7 +3,6 @@ import * as React from "react"
 import Typography from '@material-ui/core/Typography';
 
 import Calendar from 'react-calendar';
-import moment from 'moment';
 import "../components/calendar.css"
 
 const HomePage = (props) => {
@@ -16,9 +15,9 @@ const HomePage = (props) => {
 
     function turnoDi(date){
         let diff = Math.round(Math.abs((startDate - date) / oneDay))
-        if(Math.ceil(diff/4) % 3 == 0){
+        if(Math.ceil(diff/4) % 3 === 0){
             return "Laura"
-        } else if(Math.ceil(diff/4) % 2 == 0){
+        } else if(Math.ceil(diff/4) % 2 === 0){
             return "Fili"
         } else {
             return "Giulio"
@@ -41,9 +40,9 @@ const HomePage = (props) => {
                         return
                     }
                     let diff = Math.round(Math.abs((startDate - date) / oneDay))
-                    if(Math.ceil(diff/4) % 3 == 0){
+                    if(Math.ceil(diff/4) % 3 === 0){
                         return "highlightlaura"
-                    } else if(Math.ceil(diff/4) % 2 == 0){
+                    } else if(Math.ceil(diff/4) % 2 === 0){
                         return "highlightfili"
                     } else {
                         return "highlightgiulio"
