@@ -31,9 +31,11 @@ theme.typography.h1 = {
 
 const IndexPage = () => {
   const [user, setUser] = React.useState('');
-  if (typeof window !== 'undefined') {
-    setUser(localStorage.getItem('username') || '');
-  }
+  React.useEffect(() => {
+    if (typeof window !== 'undefined' & user == "") {
+      setUser(localStorage.getItem('username') || '');
+    }
+  })
 
   return(<Layout>
     <SEO title="Home" />
