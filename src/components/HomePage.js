@@ -51,17 +51,18 @@ const HomePage = (props) => {
     const [timestamps, setTimestamps] = React.useState([""]);
     const [open, setOpen] = React.useState(false);
 
-    const startDate = new Date(2021, 3, 10);
+    const startDate = new Date(2021, 2, 8);
 
     const oneDay = 24 * 60 * 60 * 1000;
     const today = new Date();
     today.setHours(0,0,0,0);
+    value.setHours(0,0,0,0);
 
-    function turnoDi(date){
-        let diff = Math.round(Math.abs((startDate - date) / oneDay))
+    function turnoDi(datascelta){
+        let diff = Math.round(Math.abs((startDate - datascelta) / oneDay))
         if(Math.ceil(diff/4) % 3 === 0){
             return "Laura"
-        } else if(Math.ceil(diff/4) % 2 === 0){
+        } else if(Math.ceil(diff/4) % 3 === 1){
             return "Fili"
         } else {
             return "Giulio"
@@ -122,7 +123,7 @@ const HomePage = (props) => {
                             let diff = Math.round(Math.abs((startDate - date) / oneDay))
                             if(Math.ceil(diff/4) % 3 === 0){
                                 return "highlightlaura"
-                            } else if(Math.ceil(diff/4) % 2 === 0){
+                            } else if(Math.ceil(diff/4) % 3 === 1){
                                 return "highlightfili"
                             } else {
                                 return "highlightgiulio"
