@@ -16,6 +16,18 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-firebase-messaging`,
+      options: {
+        //required unless removeFirebaseServiceWorker == true
+        config: { 
+          apiKey: 'AIzaSyDZW57QvcounH23bpX2wTF2Hvkh75DF8j4',
+          appId: '1:17925739572:web:c7cfe66d400b05b1da6661',
+          messagingSenderId: '17925739572',
+          projectId: 'casadoneganimilano',
+        },
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

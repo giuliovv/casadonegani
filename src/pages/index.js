@@ -32,7 +32,7 @@ theme.typography.h1 = {
 const IndexPage = () => {
   const [user, setUser] = React.useState('');
   React.useEffect(() => {
-    if (typeof window !== 'undefined' & user == "") {
+    if (typeof window !== 'undefined' & user === "") {
       setUser(localStorage.getItem('username') || '');
     }
   })

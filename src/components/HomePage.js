@@ -18,6 +18,10 @@ import "../components/calendar.css"
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
+if (typeof window!== "undefined") {
+    import('./firebase_utils');
+}
+
 const firebaseConfig = {
     apiKey: "AIzaSyDZW57QvcounH23bpX2wTF2Hvkh75DF8j4",
     authDomain: "casadoneganimilano.firebaseapp.com",
@@ -45,11 +49,20 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const HomePage = (props) => {
+    const [isTokenFound, setTokenFound] = React.useState(false);
     const classes = useStyles();
     const [value, onChange] = React.useState(new Date());
     const [date, setDate] = React.useState("");
     const [timestamps, setTimestamps] = React.useState([""]);
     const [open, setOpen] = React.useState(false);
+
+    if (typeof window!== "undefined") {
+        if(!isTokenFound){
+            import('./firebase_utils').then(({ getToken }) => {
+                    getToken(setTokenFound, props.user);     
+                });
+        }
+    }
 
     const startDate = new Date(2021, 2, 8);
 
@@ -78,7 +91,7 @@ const HomePage = (props) => {
 
     React.useEffect(
         () => {
-            if(date != ""){
+            if(date !== ""){
                 setTimestamps(date.map(data => data.data().data.toDate().getTime()))
             }
         },
@@ -139,6 +152,12 @@ const HomePage = (props) => {
                     <Button variant="contained" color="primary" onClick={() => firma()}>
                         Ho pulito
                     </Button>
+                    {/* {isTokenFound ? 
+                    <Button variant="contained" color="primary" onClick={() => getToken(setTokenFound)}>
+                        Attiva notifiche
+                    </Button> :
+                    null
+                    } */}
                 </div>
             </div>
 
@@ -149,10 +168,10 @@ const HomePage = (props) => {
             </Typography>
 
             <List dense={true} className={classes.root}>
-              {date == "" ? 
+              {date === "" ? 
               "Caricamento..." :
               date.map( data =>
-                <ListItem>
+                <ListItem key={Intl.DateTimeFormat('it-IT').format(data.data().data.toDate())}>
                   <ListItemText
                     primary={Intl.DateTimeFormat('it-IT').format(data.data().data.toDate())}
                     secondary={data.data().user}
