@@ -11,6 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import CloseIcon from '@material-ui/icons/Close';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 import Calendar from 'react-calendar';
 import "../components/calendar.css"
@@ -113,6 +114,48 @@ const HomePage = (props) => {
                 });
           });
     }
+
+    async function apriPorta(location) {
+        const settings = {
+            method: 'POST',
+            // headers: {
+            //     Accept: 'application/json',
+            //     'Content-Type': 'application/json',
+            // }
+        };
+        try {
+            const fetchResponse = await fetch(`http://${location}:12576/cgi-bin/main.cgi`, settings);
+            // const data = await fetchResponse.json();
+            // return data;
+        } catch (e) {
+            console.log(e);
+        }    
+    
+    }
+
+    async function disableApriPorta(location) {
+        const settings = {
+            method: 'POST',
+        };
+        try {
+            await fetch(`http://${location}:12576/cgi-bin/disabilita.cgi?user=${props.user}`, settings);
+        } catch (e) {
+            console.log(e);
+        }    
+    
+    }
+
+    async function sendCommand(command, location) {
+        const settings = {
+            method: 'POST',
+        };
+        try {
+            await fetch(`http://${location}:12576/cgi-bin/luci.cgi?comando=${command}`, settings);
+        } catch (e) {
+            console.log(e);
+        }    
+    
+    }
   
     return(
         <div style={{display:"block"}}>
@@ -121,6 +164,21 @@ const HomePage = (props) => {
                     <Typography variant="h1" component="h2" gutterBottom style={{marginBottom: "40px", maxWidth: "80%", marginLeft: "10%", overflow: "hidden"}}>
                     {props.user !== "Laura" ? "Benvenuto" : "Benvenuta"} {props.user}
                     </Typography>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        style={{ marginBottom: "30px" }}
+                        onClick={() => {
+                            apriPorta("casa.giuliovaccari.it");
+                            apriPorta("192.168.1.46");
+                            disableApriPorta("casa.giuliovaccari.it");
+                            disableApriPorta("192.168.1.46");
+                        }}
+                        startIcon={<MeetingRoomIcon />}
+                    >
+                        Apri porta
+                    </Button>
                     <Calendar
                         style={{magin:"auto"}}
                         locale="it-IT"
