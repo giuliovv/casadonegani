@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -12,6 +13,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import CloseIcon from '@material-ui/icons/Close';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
+import ChildCareIcon from '@material-ui/icons/ChildCare';
 
 import Calendar from 'react-calendar';
 import "../components/calendar.css"
@@ -164,21 +167,53 @@ const HomePage = (props) => {
                     <Typography variant="h1" component="h2" gutterBottom style={{marginBottom: "40px", maxWidth: "80%", marginLeft: "10%", overflow: "hidden"}}>
                     {props.user !== "Laura" ? "Benvenuto" : "Benvenuta"} {props.user}
                     </Typography>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        style={{ marginBottom: "30px" }}
-                        onClick={() => {
-                            apriPorta("casa.giuliovaccari.it");
-                            apriPorta("192.168.1.46");
-                            disableApriPorta("casa.giuliovaccari.it");
-                            disableApriPorta("192.168.1.46");
-                        }}
-                        startIcon={<MeetingRoomIcon />}
-                    >
-                        Apri porta
-                    </Button>
+                    <Grid container direction="column" spacing={2}>
+                        <Grid item xs={12}>
+                            <Button
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            onClick={() => {
+                                apriPorta("casa.giuliovaccari.it");
+                                apriPorta("192.168.1.46");
+                                disableApriPorta("casa.giuliovaccari.it");
+                                disableApriPorta("192.168.1.46");
+                            }}
+                            startIcon={<MeetingRoomIcon />}
+                            >
+                            Apri porta
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                onClick={() => {
+                                    sendCommand("casa.giuliovaccari.it", "auto");
+                                    sendCommand("192.168.1.46", "auto");
+                                }}
+                                startIcon={<WbIncandescentIcon />}
+                            >
+                                Luce ingresso
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                style={{ marginBottom: "30px" }}
+                                onClick={() => {
+                                    sendCommand("casa.giuliovaccari.it", "jump");
+                                    sendCommand("192.168.1.46", "jump");
+                                }}
+                                startIcon={<ChildCareIcon />}
+                            >
+                                Party mode
+                            </Button>
+                        </Grid>
+                    </Grid>
                     <Calendar
                         style={{magin:"auto"}}
                         locale="it-IT"
