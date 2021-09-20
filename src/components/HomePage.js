@@ -120,7 +120,7 @@ const HomePage = (props) => {
 
     async function apriPorta(location) {
         const settings = {
-            method: 'POST',
+            method: 'GET',
             // headers: {
             //     Accept: 'application/json',
             //     'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const HomePage = (props) => {
 
     async function disableApriPorta(location) {
         const settings = {
-            method: 'POST',
+            method: 'GET',
         };
         try {
             await fetch(`${location}/cgi-bin/disabilita.cgi?user=${props.user}`, settings);
@@ -151,7 +151,7 @@ const HomePage = (props) => {
 
     async function sendCommand(location, command) {
         const settings = {
-            method: 'POST',
+            method: 'GET',
         };
         try {
             await fetch(`${location}/cgi-bin/luci.cgi?comando=${command}`, settings);
