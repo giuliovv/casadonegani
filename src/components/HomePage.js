@@ -177,6 +177,7 @@ const HomePage = (props) => {
                             variant="contained"
                             color="primary"
                             size="large"
+                            style={{minWidth: "300px"}}
                             onClick={() => {
                                 apriPorta("https://casa.giuliovaccari.it");
                             }}
@@ -190,6 +191,7 @@ const HomePage = (props) => {
                                 variant="contained"
                                 color="primary"
                                 size="large"
+                                style={{minWidth: "300px"}}
                                 onClick={() => {
                                     sendCommand("https://casa.giuliovaccari.it", "auto");
                                 }}
@@ -203,7 +205,7 @@ const HomePage = (props) => {
                                 variant="contained"
                                 color="primary"
                                 size="large"
-                                style={{ marginBottom: "30px" }}
+                                style={{ marginBottom: "30px", minWidth: "300px" }}
                                 onClick={() => {
                                     sendCommand("https://casa.giuliovaccari.it", "jump");
                                 }}
@@ -213,6 +215,14 @@ const HomePage = (props) => {
                             </Button>
                         </Grid>
                     </Grid>
+                </div>
+            </div>
+            <hr/>
+            <div style={{minHeight: "100vh", display: "table"}}>
+                <div style={{display: "table-cell",  verticalAlign: "middle", overflowX: "hidden"}}>
+                    <Typography variant="h3" style={{marginBottom: "30px"}}>
+                        Calendario
+                    </Typography>
                     <Calendar
                         style={{magin:"auto"}}
                         locale="it-IT"
