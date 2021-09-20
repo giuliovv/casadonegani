@@ -7,6 +7,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "dgram": "^1.0.1",
     "firebase": "^8.2.10",
     "gatsby": "^3.0.1",
     "gatsby-plugin-firebase-messaging": "^1.1.0",
@@ -20,6 +21,9 @@
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-theme-material-ui": "^1.0.13",
     "gatsby-transformer-sharp": "^3.0.0",
+    "magic-home": "^2.7.0",
+    "net": "^1.0.2",
+    "os": "^0.1.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-calendar": "^3.3.1",

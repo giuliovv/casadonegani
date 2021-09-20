@@ -1,5 +1,7 @@
 import * as React from "react"
 
+import { navigate } from "gatsby"
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
@@ -127,11 +129,12 @@ const HomePage = (props) => {
             // }
         };
         try {
-            const fetchResponse = await fetch(`http://${location}/cgi-bin/main.cgi`, settings);
+            const fetchResponse = await fetch(`http://${location}/cgi-bin/main.cgi?disabilita=true&user=${props.user}`, settings);
             // const data = await fetchResponse.json();
             // return data;
         } catch (e) {
             console.log(e);
+            window.location ='http://192.168.1.46:12576/cgi-bin/main.cgi?disabilita=true&user=' + props.user
         }    
     
     }
@@ -156,6 +159,7 @@ const HomePage = (props) => {
             await fetch(`${location}/cgi-bin/luci.cgi?comando=${command}`, settings);
         } catch (e) {
             console.log(e);
+            window.location ='http://192.168.1.46:12576/cgi-bin/luci.cgi?ritorna&comando=' + command
         }    
     
     }
@@ -175,9 +179,6 @@ const HomePage = (props) => {
                             size="large"
                             onClick={() => {
                                 apriPorta("https://casa.giuliovaccari.it");
-                                apriPorta("http://192.168.1.46:12576");
-                                disableApriPorta("https://casa.giuliovaccari.it");
-                                disableApriPorta("http://192.168.1.46:12576");
                             }}
                             startIcon={<MeetingRoomIcon />}
                             >
@@ -191,7 +192,6 @@ const HomePage = (props) => {
                                 size="large"
                                 onClick={() => {
                                     sendCommand("https://casa.giuliovaccari.it", "auto");
-                                    sendCommand("http://192.168.1.46", "auto");
                                 }}
                                 startIcon={<WbIncandescentIcon />}
                             >
@@ -205,8 +205,7 @@ const HomePage = (props) => {
                                 size="large"
                                 style={{ marginBottom: "30px" }}
                                 onClick={() => {
-                                    sendCommand("casa.giuliovaccari.it", "jump");
-                                    sendCommand("192.168.1.46", "jump");
+                                    sendCommand("https://casa.giuliovaccari.it", "jump");
                                 }}
                                 startIcon={<ChildCareIcon />}
                             >
