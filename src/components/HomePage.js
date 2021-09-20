@@ -148,7 +148,7 @@ const HomePage = (props) => {
     
     }
 
-    async function sendCommand(command, location) {
+    async function sendCommand(location, command) {
         const settings = {
             method: 'POST',
         };
