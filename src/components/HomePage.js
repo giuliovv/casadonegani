@@ -127,7 +127,7 @@ const HomePage = (props) => {
             // }
         };
         try {
-            const fetchResponse = await fetch(`http://${location}:12576/cgi-bin/main.cgi`, settings);
+            const fetchResponse = await fetch(`http://${location}/cgi-bin/main.cgi`, settings);
             // const data = await fetchResponse.json();
             // return data;
         } catch (e) {
@@ -141,7 +141,7 @@ const HomePage = (props) => {
             method: 'POST',
         };
         try {
-            await fetch(`http://${location}:12576/cgi-bin/disabilita.cgi?user=${props.user}`, settings);
+            await fetch(`${location}/cgi-bin/disabilita.cgi?user=${props.user}`, settings);
         } catch (e) {
             console.log(e);
         }    
@@ -153,7 +153,7 @@ const HomePage = (props) => {
             method: 'POST',
         };
         try {
-            await fetch(`http://${location}:12576/cgi-bin/luci.cgi?comando=${command}`, settings);
+            await fetch(`${location}/cgi-bin/luci.cgi?comando=${command}`, settings);
         } catch (e) {
             console.log(e);
         }    
@@ -174,10 +174,10 @@ const HomePage = (props) => {
                             color="primary"
                             size="large"
                             onClick={() => {
-                                apriPorta("casa.giuliovaccari.it");
-                                apriPorta("192.168.1.46");
-                                disableApriPorta("casa.giuliovaccari.it");
-                                disableApriPorta("192.168.1.46");
+                                apriPorta("https://casa.giuliovaccari.it");
+                                apriPorta("http://192.168.1.46:12576");
+                                disableApriPorta("https://casa.giuliovaccari.it");
+                                disableApriPorta("http://192.168.1.46:12576");
                             }}
                             startIcon={<MeetingRoomIcon />}
                             >
@@ -190,8 +190,8 @@ const HomePage = (props) => {
                                 color="primary"
                                 size="large"
                                 onClick={() => {
-                                    sendCommand("casa.giuliovaccari.it", "auto");
-                                    sendCommand("192.168.1.46", "auto");
+                                    sendCommand("https://casa.giuliovaccari.it", "auto");
+                                    sendCommand("http://192.168.1.46", "auto");
                                 }}
                                 startIcon={<WbIncandescentIcon />}
                             >
