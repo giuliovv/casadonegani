@@ -127,7 +127,7 @@ const HomePage = (props) => {
             // }
         };
         try {
-            const fetchResponse = await fetch(`http://${location}/cgi-bin/main.cgi?disabilita=true&user=${props.user}`, settings);
+            const fetchResponse = await fetch(`${location}/cgi-bin/main.cgi?disabilita=true&user=${props.user}`, settings);
             // const data = await fetchResponse.json();
             // return data;
         } catch (e) {
