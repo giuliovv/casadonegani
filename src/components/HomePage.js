@@ -127,11 +127,12 @@ const HomePage = (props) => {
             // }
         };
         try {
-            const fetchResponse = await fetch(`http://${location}/cgi-bin/main.cgi`, settings);
+            const fetchResponse = await fetch(`http://${location}/cgi-bin/main.cgi?disabilita=true&user=${props.user}`, settings);
             // const data = await fetchResponse.json();
             // return data;
         } catch (e) {
             console.log(e);
+            window.location ='http://192.168.1.46:12576/cgi-bin/main.cgi?disabilita=true&user=' + props.user
         }    
     
     }
@@ -156,6 +157,7 @@ const HomePage = (props) => {
             await fetch(`${location}/cgi-bin/luci.cgi?comando=${command}`, settings);
         } catch (e) {
             console.log(e);
+            window.location ='http://192.168.1.46:12576/cgi-bin/luci.cgi?ritorna&comando=' + command
         }    
     
     }
@@ -173,11 +175,9 @@ const HomePage = (props) => {
                             variant="contained"
                             color="primary"
                             size="large"
+                            style={{minWidth: "300px"}}
                             onClick={() => {
                                 apriPorta("https://casa.giuliovaccari.it");
-                                apriPorta("http://192.168.1.46:12576");
-                                disableApriPorta("https://casa.giuliovaccari.it");
-                                disableApriPorta("http://192.168.1.46:12576");
                             }}
                             startIcon={<MeetingRoomIcon />}
                             >
@@ -189,9 +189,9 @@ const HomePage = (props) => {
                                 variant="contained"
                                 color="primary"
                                 size="large"
+                                style={{minWidth: "300px"}}
                                 onClick={() => {
                                     sendCommand("https://casa.giuliovaccari.it", "auto");
-                                    sendCommand("http://192.168.1.46", "auto");
                                 }}
                                 startIcon={<WbIncandescentIcon />}
                             >
@@ -203,10 +203,9 @@ const HomePage = (props) => {
                                 variant="contained"
                                 color="primary"
                                 size="large"
-                                style={{ marginBottom: "30px" }}
+                                style={{ marginBottom: "30px", minWidth: "300px" }}
                                 onClick={() => {
-                                    sendCommand("casa.giuliovaccari.it", "jump");
-                                    sendCommand("192.168.1.46", "jump");
+                                    sendCommand("https://casa.giuliovaccari.it", "jump");
                                 }}
                                 startIcon={<ChildCareIcon />}
                             >
@@ -214,6 +213,14 @@ const HomePage = (props) => {
                             </Button>
                         </Grid>
                     </Grid>
+                </div>
+            </div>
+            <hr/>
+            <div style={{minHeight: "100vh", display: "table"}}>
+                <div style={{display: "table-cell",  verticalAlign: "middle", overflowX: "hidden"}}>
+                    <Typography variant="h3" style={{marginBottom: "30px"}}>
+                        Calendario
+                    </Typography>
                     <Calendar
                         style={{magin:"auto"}}
                         locale="it-IT"
