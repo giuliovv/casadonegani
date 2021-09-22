@@ -11,6 +11,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import BedtimeIcon from '@mui/icons-material/Bedtime';
 import CloseIcon from '@material-ui/icons/Close';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
@@ -210,6 +211,20 @@ const HomePage = (props) => {
                                 startIcon={<ChildCareIcon />}
                             >
                                 Party mode
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                style={{ marginBottom: "30px", minWidth: "300px" }}
+                                onClick={() => {
+                                    sendCommand("https://casa.giuliovaccari.it", "fade");
+                                }}
+                                startIcon={<BedtimeIcon />}
+                            >
+                                Relax mode
                             </Button>
                         </Grid>
                     </Grid>
