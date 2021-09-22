@@ -11,7 +11,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import BedtimeIcon from '@mui/icons-material/Bedtime';
+import NightsStayIcon from '@material-ui/icons/NightsStay';
 import CloseIcon from '@material-ui/icons/Close';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
@@ -222,7 +222,7 @@ const HomePage = (props) => {
                                 onClick={() => {
                                     sendCommand("https://casa.giuliovaccari.it", "fade");
                                 }}
-                                startIcon={<BedtimeIcon />}
+                                startIcon={<NightsStayIcon />}
                             >
                                 Relax mode
                             </Button>
