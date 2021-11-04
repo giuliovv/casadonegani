@@ -69,7 +69,7 @@ const HomePage = (props) => {
         }
     }
 
-    const startDate = new Date(2021, 2, 8);
+    const startDate = new Date(2021, 4, 10);
 
     const oneDay = 24 * 60 * 60 * 1000;
     const today = new Date();
@@ -78,9 +78,9 @@ const HomePage = (props) => {
 
     function turnoDi(datascelta){
         let diff = Math.round(Math.abs((startDate - datascelta) / oneDay))
-        if(Math.ceil(diff/4) % 3 === 0){
+        if(Math.ceil(diff/5) % 3 === 0){
             return "Laura"
-        } else if(Math.ceil(diff/4) % 3 === 1){
+        } else if(Math.ceil(diff/5) % 3 === 1){
             return "Fili"
         } else {
             return "Giulio"
@@ -249,9 +249,9 @@ const HomePage = (props) => {
                                 return
                             }
                             let diff = Math.round(Math.abs((startDate - date) / oneDay))
-                            if(Math.ceil(diff/4) % 3 === 0){
+                            if(Math.ceil(diff/5) % 3 === 0){
                                 return "highlightlaura"
-                            } else if(Math.ceil(diff/4) % 3 === 1){
+                            } else if(Math.ceil(diff/5) % 3 === 1){
                                 return "highlightfili"
                             } else {
                                 return "highlightgiulio"
