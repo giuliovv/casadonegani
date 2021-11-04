@@ -164,9 +164,9 @@ const HomePage = (props) => {
     }
   
     return(
-        <div style={{display:"block"}}>
-            <div style={{minHeight: "100vh", display: "table"}}>
-                <div style={{display: "table-cell",  verticalAlign: "middle", overflowX: "hidden"}}>
+        <div style={{display:"block", overflowX: "hidden"}}>
+            <div style={{minHeight: "100vh", display: "table", margin: "0 auto", overflowX: "hidden"}}>
+                <div style={{display: "table-cell",  verticalAlign: "middle", overflowX: "hidden", margin: "0 auto"}}>
                     <Typography variant="h1" component="h2" gutterBottom style={{marginBottom: "40px", maxWidth: "80%", marginLeft: "10%", overflow: "hidden"}}>
                     {props.user !== "Laura" ? "Benvenuto" : "Benvenuta"} {props.user}
                     </Typography>
